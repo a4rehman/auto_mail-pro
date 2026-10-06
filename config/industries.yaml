@@ -1,0 +1,18 @@
+# Industry taxonomy for 100Solutionz
+industries:
+  - dental_clinic
+  - medical_clinic
+  - private_healthcare
+  - med_spa
+  - hospital
+  - beauty_salon
+  - restaurant
+  - ecommerce
+  - fashion_store
+  - real_estate
+  - gym_fitness
+  - hotel
+  - auto_dealership
+  - professional_services
+  - local_business
+  - other

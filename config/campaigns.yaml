@@ -1,0 +1,99 @@
+# 100Solutionz Campaign Configuration
+dental:
+  name: Dental Clinics
+  services:
+    - AI Receptionist
+    - WhatsApp Automation
+    - Appointment Automation
+    - Website Development
+    - Local SEO
+
+medical:
+  name: Medical Clinics
+  services:
+    - AI Receptionist
+    - WhatsApp Automation
+    - Appointment Automation
+    - CRM Automation
+    - Website Development
+
+med_spa:
+  name: Med Spas
+  services:
+    - AI Receptionist
+    - WhatsApp Automation
+    - Booking Automation
+    - Website Development
+    - Social Media Management
+
+beauty_salon:
+  name: Beauty Salons
+  services:
+    - AI Receptionist
+    - WhatsApp Automation
+    - Booking Automation
+    - Website Development
+    - Local SEO
+
+ecommerce:
+  name: E-commerce Businesses
+  services:
+    - E-commerce Development
+    - Shopify Development
+    - AI Shopping Assistant
+    - Conversion Optimization
+    - Ads Management
+
+real_estate:
+  name: Real Estate Agencies
+  services:
+    - AI Chatbot
+    - CRM Automation
+    - Website Development
+    - Lead Capture Automation
+    - Ads Management
+
+gym_fitness:
+  name: Gyms & Fitness
+  services:
+    - AI Receptionist
+    - WhatsApp Automation
+    - Membership Automation
+    - Website Development
+    - Social Media Management
+
+restaurant:
+  name: Restaurants
+  services:
+    - WhatsApp Automation
+    - AI Chatbot
+    - Website Development
+    - Online Ordering Integration
+    - Social Media Management
+
+auto_dealership:
+  name: Auto Dealerships
+  services:
+    - AI Chatbot
+    - Lead Capture Automation
+    - CRM Automation
+    - Website Development
+    - Ads Management
+
+professional_services:
+  name: Professional Services
+  services:
+    - Website Development
+    - AI Chatbot
+    - CRM Automation
+    - Local SEO
+    - Business Automation
+
+local_business:
+  name: Local Businesses
+  services:
+    - Website Development
+    - AI Receptionist
+    - Local SEO
+    - WhatsApp Automation
+    - Business Automation

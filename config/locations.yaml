@@ -1,0 +1,22 @@
+# Location configuration templates
+countries:
+  US:
+    name: United States
+    states:
+      - TX
+      - CA
+      - FL
+      - NY
+      - IL
+      - PA
+      - OH
+      - GA
+      - NC
+      - MI
+  UK:
+    name: United Kingdom
+    regions:
+      - England
+      - Scotland
+      - Wales
+      - Northern Ireland
