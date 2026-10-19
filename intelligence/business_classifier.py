@@ -1,5 +1,5 @@
 from typing import Dict, Any
-from intelligence.ai_analyzer import AIAnalyzer
+from intelligence.ai_analyzer import AIAnalyzer, JSON_OBJECT
 
 
 class BusinessClassifier:
@@ -18,7 +18,7 @@ Website: {website}
 Description: {desc}
 """
         try:
-            res = self.ai_analyzer.analyze(prompt)
+            res = self.ai_analyzer.analyze(prompt, response_schema=JSON_OBJECT)
             return res
         except:
             return {"industry": "local_business", "business_type": "local_service", "confidence": 0.5}

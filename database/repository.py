@@ -113,6 +113,9 @@ class LeadRepository:
     
     def get_by_id(self, lead_id: str) -> Optional[Lead]:
         return self.db.query(Lead).filter(Lead.lead_id == lead_id).first()
+
+    def get_by_pk(self, pk_id: int) -> Optional[Lead]:
+        return self.db.query(Lead).filter(Lead.id == pk_id).first()
     
     def list_leads(self, limit: int = 100, offset: int = 0, **filters) -> List[Lead]:
         q = self.db.query(Lead)
@@ -120,3 +123,48 @@ class LeadRepository:
             if hasattr(Lead, k) and v is not None:
                 q = q.filter(getattr(Lead, k) == v)
         return q.order_by(Lead.created_at.desc()).offset(offset).limit(limit).all()
+
+    def count(self, **filters) -> int:
+        q = self.db.query(Lead)
+        for k, v in filters.items():
+            if hasattr(Lead, k) and v is not None:
+                q = q.filter(getattr(Lead, k) == v)
+        return q.count()
+
+    def get_metrics(self) -> Dict[str, Any]:
+        total = self.db.query(Lead).count()
+        high_score = self.db.query(Lead).filter(Lead.lead_score >= 80).count()
+        ready_outreach = self.db.query(Lead).filter(Lead.approved == True, Lead.email_status != 'sent').count()
+        sent = self.db.query(Lead).filter(Lead.email_status == 'sent').count()
+        pending_review = self.db.query(Lead).filter(
+            Lead.generated_email.isnot(None),
+            (Lead.approved == False) | (Lead.approved.is_(None))
+        ).count()
+        return {
+            "total_leads": total,
+            "high_score": high_score,
+            "ready_outreach": ready_outreach,
+            "emails_sent": sent,
+            "pending_review": pending_review
+        }
+
+    def update_lead(self, lead_id: str, updates: Dict[str, Any]) -> Optional[Lead]:
+        lead = self.get_by_id(lead_id)
+        if not lead:
+            return None
+        for k, v in updates.items():
+            if hasattr(lead, k):
+                setattr(lead, k, v)
+        lead.updated_at = datetime.utcnow()
+        self.db.commit()
+        self.db.refresh(lead)
+        return lead
+
+    def delete_lead(self, pk_id: int) -> bool:
+        lead = self.get_by_pk(pk_id)
+        if not lead:
+            return False
+        self.db.delete(lead)
+        self.db.commit()
+        return True
+

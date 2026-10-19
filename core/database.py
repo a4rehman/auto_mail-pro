@@ -1,9 +1,16 @@
 import os
+from pathlib import Path
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 from config.settings import settings
 
 Base = declarative_base()
+
+# Ensure SQLite directory exists if applicable
+if settings.DATABASE_URL.startswith("sqlite"):
+    db_path = settings.DATABASE_URL.replace("sqlite:///", "")
+    if db_path and db_path != ":memory:":
+        Path(db_path).parent.mkdir(parents=True, exist_ok=True)
 
 engine = create_engine(
     settings.DATABASE_URL,
@@ -21,5 +28,12 @@ def get_db():
         db.close()
 
 
+def get_db_session():
+    """Returns a new SessionLocal instance."""
+    return SessionLocal()
+
+
 def init_db():
+    import database.models  # ensure models are registered
     Base.metadata.create_all(bind=engine)
+

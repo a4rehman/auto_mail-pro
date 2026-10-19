@@ -1,5 +1,5 @@
 from typing import Dict, Any, List
-from intelligence.ai_analyzer import AIAnalyzer
+from intelligence.ai_analyzer import AIAnalyzer, JSON_OBJECT
 
 
 OPPORTUNITIES = [
@@ -29,7 +29,7 @@ Website: {website}
 Tech: {tech}
 """
         try:
-            res = self.ai_analyzer.analyze(prompt)
+            res = self.ai_analyzer.analyze(prompt, response_schema=JSON_OBJECT)
             if not res.get('primary_opportunity'):
                 res['primary_opportunity'] = 'Website Development'
             if not res.get('secondary_opportunities'):

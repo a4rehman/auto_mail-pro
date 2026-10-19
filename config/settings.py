@@ -1,10 +1,12 @@
 import os
 from pathlib import Path
 from typing import Optional
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
+    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
+
     # Apify
     APIFY_API_TOKEN: str = ""
     APIFY_ACTOR_ID: str = ""
@@ -42,10 +44,6 @@ class Settings(BaseSettings):
     BUSINESS_NAME: str = "100Solutionz"
     BUSINESS_ADDRESS: str = ""
     UNSUBSCRIBE_ENABLED: bool = True
-    
-    class Config:
-        env_file = ".env"
-        env_file_encoding = "utf-8"
 
 
 # Global settings instance

@@ -1,5 +1,5 @@
 from typing import Dict, Any
-from intelligence.ai_analyzer import AIAnalyzer
+from intelligence.ai_analyzer import AIAnalyzer, JSON_OBJECT
 
 
 class EmailValidator:
@@ -21,7 +21,7 @@ Subject: {subject}
 Body: {email_body}
 """
         try:
-            res = self.ai_analyzer.analyze(prompt)
+            res = self.ai_analyzer.analyze(prompt, response_schema=JSON_OBJECT)
             return res
         except:
             return {"is_good": "YES", "mistakes": [], "improved_subject": subject, "improved_message": email_body}

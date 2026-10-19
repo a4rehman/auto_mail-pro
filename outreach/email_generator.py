@@ -1,5 +1,5 @@
 from typing import Dict, Any
-from intelligence.ai_analyzer import AIAnalyzer
+from intelligence.ai_analyzer import AIAnalyzer, JSON_OBJECT
 
 
 class EmailGenerator:
@@ -30,7 +30,7 @@ Recommended service: {opp}
 Reason: {reason}
 """
         try:
-            res = self.ai_analyzer.analyze(prompt)
+            res = self.ai_analyzer.analyze(prompt, response_schema=JSON_OBJECT)
             if not res.get('subject'):
                 res['subject'] = f"Quick question about {opp.lower()}"
             if not res.get('email'):
